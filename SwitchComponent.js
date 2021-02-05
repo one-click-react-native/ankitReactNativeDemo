@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import 
     {View,StyleSheet,
-     Switch,StatusBar,Button}
+     Switch,StatusBar,Button,Text}
        from 'react-native';
 
 const SwitchComponent=props=>{
@@ -10,7 +10,7 @@ const SwitchComponent=props=>{
 
     const styleTypes=['default','dark-content','light-content'];
     const [visibleStatusBar,setVisibleBar]=useState(false);
-    const [styleStatusBar,setStyleStatusBar]=useState(styleTypes(0));
+    const [styleStatusBar,setStyleStatusBar]=useState(styleTypes[0]);
 
     const changeVisibility=()=>{
         setVisibleBar(!visibleStatusBar);
@@ -42,7 +42,7 @@ const SwitchComponent=props=>{
         <StatusBar hidden={visibleStatusBar} />
       </View>
       <View style={styles.buttonContainer}>
-        <Button title="Toggle StatusBar" onPress={() => changeVisibilityStatusBar()} />
+        <Button title="Toggle StatusBar" onPress={() => changeVisibility()} />
       </View>
       <View style={styles.buttonContainer}>
         <Button title="Change StatusBar Style" onPress={() => changeStyleStatusBar()} />

@@ -1,6 +1,5 @@
-import { useState } from "react"
-import React,{useState} from 'react';
-import { Animated, View } from 'react-native';
+import React,{useState,useRef} from 'react';
+import { Animated, View,StyleSheet,Button,Text } from 'react-native';
 
 const AnimationComponent=props=>{
     
@@ -20,8 +19,9 @@ const AnimationComponent=props=>{
       };
     
     return(
-        <View style={{flex:1}}>
+        <View  style={{flex:1}}>
             <Animated.View
+            useNativeDriver={true}
                 style={[
                     styles.fadingContainer,
                     {opacity:fadeAnim}

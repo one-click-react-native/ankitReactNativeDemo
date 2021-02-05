@@ -14,10 +14,10 @@ const AnimationSpring=props=>{
     }
 
     return(
-        <View style={{flex:1,flexDirection:'column',paddingHorizontal:10}}>
+        <View style={{flex:1,flexDirection:'column',paddingHorizontal:10,justifyContent:'center',alignItems:'center'}}>
             <Text onPress={springFunc}>Spring</Text>
         <Animated.Image
-            style={{ width: 227, height: 200,marginBottom:10, transform: [{scale: this.springValue}] }}
+            style={{ width: 227, height: 200,marginBottom:10, transform: [{scale: springValue}] }}
             source={{uri: 'https://s3.amazonaws.com/media-p.slid.es/uploads/alexanderfarennikov/images/1198519/reactjs.png'}}/>
         </View>
     )

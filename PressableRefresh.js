@@ -1,5 +1,5 @@
-import React,{useState} from 'react';
-import {Pressable,View,StyleSheet,ScrollView,RefreshControl} from 'react-native';
+import React,{useState,useCallback} from 'react';
+import {Pressable,ToastAndroid,View,StyleSheet,ScrollView,RefreshControl,Text} from 'react-native';
 
 
 const wait=(timeout)=>{
@@ -17,7 +17,7 @@ const PressableRefreshDemo=props=>{
   })
    
     return(
-        <View style={{flex:1,flexDirection:'column'}}>
+        <View style={{flex:1,flexDirection:'column',}}>
           <Pressable
           onLongPress={()=>{
             ToastAndroid.show('Long Press!',ToastAndroid.SHORT);
@@ -29,12 +29,12 @@ const PressableRefreshDemo=props=>{
           </Pressable>
     
           <ScrollView
+          style={{marginTop:20}}
           refreshControl={
             <RefreshControl
-            colors='red'
             onRefresh={onRefreshFunc} refreshing={refresh} />
           }
-          contentContainerStyle={{flex:1}}>
+          >
     
           </ScrollView>
     

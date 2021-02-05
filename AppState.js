@@ -27,7 +27,7 @@ const AppStateDemo = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={{flex:1}}>
       <Text>Current state is: {appStateVisible}</Text>
     </View>
   );
