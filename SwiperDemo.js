@@ -5,7 +5,7 @@ import Swiper from 'react-native-deck-swiper';
 const SwiperCopy=props=>{
     return(
             <Swiper
-            useViewOverflow={Platform.os==='ios'}
+            useViewOverflow={true}
             cards={['Do','More','Of','Makes','You','Happy']}
                 renderCard={(card)=>{
                     console.log(card)

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { PanResponder, Text, View, Dimensions, Animated, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
-// import isEqual from 'lodash/isEqual'
+import isEqual from 'lodash/isEqual'
 
 const { height, width } = Dimensions.get('window')
 const LABEL_TYPES = {
@@ -36,11 +36,10 @@ class Swiper extends Component {
   constructor (props) {
     super(props)
 
-    const cardss=['DO', 'MORE', 'OF', 'WHAT', 'MAKES', 'YOU', 'HAPPY'];
     this.state = {
-      ...calculateCardIndexes(0, cardss),
+      ...calculateCardIndexes(props.cardIndex, props.cards),
       pan: new Animated.ValueXY(),
-      cards: ['DO', 'MORE', 'OF', 'WHAT', 'MAKES', 'YOU', 'HAPPY'],
+      cards: props.cards,
       previousCardX: new Animated.Value(props.previousCardDefaultPositionX),
       previousCardY: new Animated.Value(props.previousCardDefaultPositionY),
       swipedAllCards: false,
@@ -66,8 +65,7 @@ class Swiper extends Component {
   shouldComponentUpdate = (nextProps, nextState) => {
     const { props, state } = this
     const propsChanged = (
-
-      props.cards!==nextProps.cards ||
+      !isEqual(props.cards, nextProps.cards) ||
       props.cardIndex !== nextProps.cardIndex
     )
     const stateChanged = (
@@ -756,7 +754,6 @@ class Swiper extends Component {
     const renderOverlayLabel = this.renderOverlayLabel()
     renderedCards.push(
       <Animated.View
-      useNativeDriver={true}
         key={key}
         style={firstCard ? swipableCardStyle : stackCardZoomStyle}
         {...this._panResponder.panHandlers}
@@ -1020,69 +1017,5 @@ Swiper.defaultProps = {
   zoomAnimationDuration: 100,
   zoomFriction: 7
 }
-
-const styles = StyleSheet.create({
-  card: {
-    flex: 1,
-    position: 'absolute'
-  },
-  container: {
-    alignItems: 'stretch',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0
-  },
-  childrenViewStyle: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0
-  },
-  overlayLabelWrapper: {
-    position: 'absolute',
-    backgroundColor: 'transparent',
-    zIndex: 2,
-    flex: 1,
-    width: '100%',
-    height: '100%'
-  },
-  hideOverlayLabel: {
-    opacity: 0
-  },
-  overlayLabel: {
-    fontSize: 45,
-    fontWeight: 'bold',
-    borderRadius: 10,
-    padding: 10,
-    overflow: 'hidden'
-  },
-  bottomOverlayLabelWrapper: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  topOverlayLabelWrapper: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  rightOverlayLabelWrapper: {
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    marginTop: 30,
-    marginLeft: 30
-  },
-  leftOverlayLabelWrapper: {
-    flexDirection: 'column',
-    alignItems: 'flex-end',
-    justifyContent: 'flex-start',
-    marginTop: 30,
-    marginLeft: -30
-  }
-})
 
 export default Swiper
